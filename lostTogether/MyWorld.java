@@ -15,11 +15,7 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        /* Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-         * background image source
-         * https://mewki.itch.io/nature-isometric-blocks
-         */
-        super(600, 400, 1);
+        super(667, 667, 1);
         prepare();
     }
 
@@ -29,10 +25,19 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        setBackground("background.png");
-        Player ant = new Player();
-        addObject(ant,102,201);
-        player2 player2 = new player2();
-        addObject(player2,400,203);
+        setBackground("background.jpg");
+        
+        //Spawn dos jogadores
+        Player player1 = new Player();
+        addObject(player1,getWidth()/4,getHeight()/2);
+        Player2 player2 = new Player2();
+        addObject(player2,getWidth()-getWidth()/4,getHeight()-getHeight()/2);
+        
+        //Spawn dos contadores
+        OxygenCounter counter1 = new OxygenCounter(player1);
+        addObject(counter1, getWidth()/4,getHeight()/20);
+        OxygenCounter counter2 = new OxygenCounter(player2);
+        addObject(counter2, getWidth()-getWidth()/4,getHeight()/20);
+        
     }
 }
