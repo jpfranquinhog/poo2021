@@ -39,5 +39,10 @@ public class MyWorld extends World
         OxygenCounter counter2 = new OxygenCounter(player2);
         addObject(counter2, getWidth()-getWidth()/4,getHeight()/20);
         
+        //Spawn das maquinas de oxigenio
+        OxygenMachine machine1 = new OxygenMachine(player2);
+        addObject(machine1, getWidth()/10,getHeight()/4);
+        OxygenMachine machine2 = new OxygenMachine(player1);
+        addObject(machine2, getWidth()-getWidth()/10,getHeight()-getHeight()/4);
     }
 }

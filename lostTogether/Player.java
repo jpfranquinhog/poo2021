@@ -127,4 +127,8 @@ public class Player extends Actor
     public int getOxygen(){
         return oxygenCount;
     }
+    
+    public void setOxygen(int val){
+        oxygenCount = oxygenCount + val;
+    }
 }

@@ -17,4 +17,6 @@ comment7.params=
 comment7.target=void\ oxygenDrop()
 comment8.params=
 comment8.target=int\ getOxygen()
-numComments=9
+comment9.params=val
+comment9.target=void\ setOxygen(int)
+numComments=10
