@@ -39,13 +39,11 @@ public class OxygenMachine extends Actor
             Smoke smoke = new Smoke();
             getWorld().addObject(smoke, getX(), getY()-80);
             counter++;
-            System.out.println("spawn");
             }
             else if(counter == 40){
                 counter = -1;
             }
             counter++;
-            System.out.println(counter);
         }
         
     }
