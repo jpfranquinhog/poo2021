@@ -10,6 +10,8 @@ public class MyWorld extends World
 {
     private int score;
     private int counter;
+    private SimpleTimer timer = new SimpleTimer();
+    private int timeToArrive = 60;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -20,18 +22,19 @@ public class MyWorld extends World
         score=0;
         counter=0;
         prepare();
+        timer.mark();
     }
     
     public void act(){
         increaseScore();
-        showText(""+score,getWidth()-getWidth()/10,getHeight()/20);
+        showText("Score:"+score,getWidth()-getWidth()/3,getHeight()/25);
+        showTime();
         if(getObjects(Player.class).get(0).getOxygen()<=0){
             endgame();
         }
         if(getObjects(Player2.class).get(0).getOxygen()<=0){
             endgame();
         }
-        
     }
     
     /**
@@ -50,9 +53,9 @@ public class MyWorld extends World
         
         //Spawn dos contadores
         OxygenCounter counter1 = new OxygenCounter(player1);
-        addObject(counter1, getWidth()/4,getHeight()/20);
+        addObject(counter1, getWidth()/8,getHeight()/20);
         OxygenCounter counter2 = new OxygenCounter(player2);
-        addObject(counter2, getWidth()-getWidth()/4,getHeight()/20);
+        addObject(counter2, getWidth()-getWidth()/8,getHeight()/20);
         
         //Spawn das maquinas de oxigenio
         OxygenMachine machine1 = new OxygenMachine(player2);
@@ -60,6 +63,29 @@ public class MyWorld extends World
         OxygenMachine machine2 = new OxygenMachine(player1);
         addObject(machine2, getWidth()-getWidth()/10,getHeight()-getHeight()/4);
         
+        //Spawn do espaco entre os jogadores
+        Space space1 = new Space();
+        addObject(space1, getWidth()/2,getHeight()/21);
+        Space space2 = new Space();
+        addObject(space2, getWidth()/2,space1.getY()+2*getHeight()/21);
+        Space space3 = new Space();
+        addObject(space3, getWidth()/2,space2.getY()+2*getHeight()/21);
+        Space space4 = new Space();
+        addObject(space4, getWidth()/2,space3.getY()+2*getHeight()/21);
+        Space space5 = new Space();
+        addObject(space5, getWidth()/2,space4.getY()+2*getHeight()/21);
+        Space space6 = new Space();
+        addObject(space6, getWidth()/2,space5.getY()+2*getHeight()/21);
+        Space space7 = new Space();
+        addObject(space7, getWidth()/2,space6.getY()+2*getHeight()/21);
+        Space space8 = new Space();
+        addObject(space8, getWidth()/2,space7.getY()+2*getHeight()/21);
+        Space space9 = new Space();
+        addObject(space9, getWidth()/2,space8.getY()+2*getHeight()/21);
+        Space space10 = new Space();
+        addObject(space10, getWidth()/2,space9.getY()+2*getHeight()/21);
+        Space space11 = new Space();
+        addObject(space11, getWidth()/2,space10.getY()+2*getHeight()/21);
     }
     
     public void increaseScore(){
@@ -83,9 +109,19 @@ public class MyWorld extends World
     public void endgame(){
         EndBackGround endBackGround = new EndBackGround();
         addObject(endBackGround,0,0);
-        showText("",getWidth()-getWidth()/10,getHeight()/20);
+        showText("",getWidth()/3+getWidth()/16,getHeight()/25);
+        showText("",getWidth()-getWidth()/3,getHeight()/25);
         showText("GAME OVER",getWidth()/2,getWidth()/18);
-        showText("Score = "+score,getWidth()-getWidth()/2,getHeight()/2);
+        showText("Score : "+score,getWidth()-getWidth()/2,getHeight()/2);
         Greenfoot.stop();
+    }
+    
+    public void showTime(){
+        int time = timer.millisElapsed();
+        if(time >= 1000 && timeToArrive != 0){
+            timer.mark();
+            timeToArrive--;
+        }
+        showText("Evacuation ETA:"+timeToArrive,getWidth()/3+getWidth()/16,getHeight()/25);
     }
 }

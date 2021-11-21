@@ -17,4 +17,6 @@ comment6.params=amount
 comment6.target=void\ increaseScore(int)
 comment7.params=
 comment7.target=void\ endgame()
-numComments=8
+comment8.params=
+comment8.target=void\ showTime()
+numComments=9
