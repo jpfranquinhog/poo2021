@@ -17,6 +17,7 @@ public class Player2 extends Player
         // Add your action code here.
         pMove();
         //zoneChange();
+        oxygenDrop();
     }
 
     public void pMove(){
@@ -24,38 +25,31 @@ public class Player2 extends Player
             if(Greenfoot.isKeyDown("Right")){
                 setLocation(getX()+getMoveSpeed(), getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("up")){
                 setLocation(getX(), getY()-getMoveSpeed());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("Down")){
                 setLocation(getX(), getY()+getMoveSpeed());
                 walkAnimation();
-                oxygenDrop();
             } 
         }else {
             if(Greenfoot.isKeyDown("Left")){
                 setLocation(getX()-getMoveSpeed(), getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("Right")){
                 setLocation(getX()+getMoveSpeed(), getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("up")){
                 setLocation(getX(), getY()-getMoveSpeed());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("Down")){
                 setLocation(getX(), getY()+getMoveSpeed());
                 walkAnimation();
-                oxygenDrop();
             }
         }
     }

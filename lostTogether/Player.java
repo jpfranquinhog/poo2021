@@ -33,6 +33,7 @@ public class Player extends Actor
         // Add your action code here.
         pMove();
         //zoneChange();
+        oxygenDrop();
     }    
 
     /*public void zoneChange(){
@@ -50,38 +51,31 @@ public class Player extends Actor
             if(Greenfoot.isKeyDown("a")){
                 setLocation(getX()-moveSpeed, getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("w")){
                 setLocation(getX(), getY()-moveSpeed);
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("s")){
                 setLocation(getX(), getY()+moveSpeed);
                 walkAnimation();
-                oxygenDrop();
             }
         }else {
             if(Greenfoot.isKeyDown("a")){
                 setLocation(getX()-moveSpeed, getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("d")){
                 setLocation(getX()+moveSpeed, getY());
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("w")){
                 setLocation(getX(), getY()-moveSpeed);
                 walkAnimation();
-                oxygenDrop();
             }
             if(Greenfoot.isKeyDown("s")){
                 setLocation(getX(), getY()+moveSpeed);
                 walkAnimation();
-                oxygenDrop();
             }
         }
     }
