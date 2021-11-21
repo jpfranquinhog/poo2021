@@ -10,6 +10,7 @@ public class OxygenMachine extends Actor
 {
     private GreenfootImage machineImage;
     private Player player;
+    private int counter = 0;
     
     public OxygenMachine(Player player){
         machineImage = new GreenfootImage("oxygenmachine2.png");
@@ -32,7 +33,20 @@ public class OxygenMachine extends Actor
     
     public void checkClose(){
         if(isTouching(Player.class)){
-            player.setOxygen(5);
+            player.setOxygen(1);
+            
+            if(counter == 0){
+            Smoke smoke = new Smoke();
+            getWorld().addObject(smoke, getX(), getY()-80);
+            counter++;
+            System.out.println("spawn");
+            }
+            else if(counter == 40){
+                counter = -1;
+            }
+            counter++;
+            System.out.println(counter);
         }
+        
     }
 }
