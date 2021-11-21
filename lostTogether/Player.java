@@ -13,6 +13,7 @@ public class Player extends Actor
     private int pScale;
     private int counter, count;
     private int oxygenCount;
+    private int batteryStored;
 
     public Player(){
         /* player image source
@@ -23,6 +24,7 @@ public class Player extends Actor
         moveSpeed = 3;
         oxygenCount = 100;
         count = 0;
+        batteryStored = 0;
         playerImage = new GreenfootImage("0_Citizen_Walk_000.png");
         playerImage.scale(playerImage.getWidth()/pScale,playerImage.getHeight()/pScale);
         setImage(playerImage);
@@ -34,6 +36,7 @@ public class Player extends Actor
         pMove();
         //zoneChange();
         oxygenDrop();
+        pickupBattery();
     }    
 
     /*public void zoneChange(){
@@ -148,5 +151,19 @@ public class Player extends Actor
             }
         }
     }
-
+    
+    public void pickupBattery(){
+        if(isTouching(PowerPickup.class)){
+            batteryStored = batteryStored + 20;
+            removeTouching(PowerPickup.class);
+        }
+    }
+    
+    public int getBatteryStored(){
+        return batteryStored;
+    }
+    
+    public void setBatteryStored(int val){
+        batteryStored = batteryStored - val;
+    }
 }

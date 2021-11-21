@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
 /**
  * Write a description of class MyWorld here.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version (a version numb er or a date)
  */
 public class MyWorld extends World
 {
@@ -12,6 +12,7 @@ public class MyWorld extends World
     private int counter;
     private SimpleTimer timer = new SimpleTimer();
     private int timeToArrive = 60;
+    private List<OxygenMachine> machines;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -29,12 +30,14 @@ public class MyWorld extends World
         increaseScore();
         showText("Score:"+score,getWidth()-getWidth()/3,getHeight()/25);
         showTime();
+        batteryStatus();
         if(getObjects(Player.class).get(0).getOxygen()<=0){
             endgame();
         }
         if(getObjects(Player2.class).get(0).getOxygen()<=0){
             endgame();
         }
+        
     }
     
     /**
@@ -123,5 +126,17 @@ public class MyWorld extends World
             timeToArrive--;
         }
         showText("Evacuation ETA:"+timeToArrive,getWidth()/3+getWidth()/16,getHeight()/25);
+    }
+    
+    public void batteryStatus(){
+        machines = getObjects(OxygenMachine.class);
+        
+        for(OxygenMachine machine : machines){
+            int valor = 0;
+            String info = "";
+            valor = machine.getBatteryCount();
+            info = "Battery left: " + valor;
+            showText(info,machine.getX(), machine.getY()+80);
+        }
     }
 }
