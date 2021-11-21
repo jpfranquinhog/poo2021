@@ -103,7 +103,7 @@ public class Player extends Actor
             default:
         }
         
-        if(counter>=39){
+        if(counter>=40){
             counter=0;
         }else counter++;
     }
@@ -129,6 +129,11 @@ public class Player extends Actor
     }
     
     public void setOxygen(int val){
-        oxygenCount = oxygenCount + val;
+        if(getOxygen()<100){
+            oxygenCount = oxygenCount + val;
+            if(getOxygen()>100){
+                oxygenCount=100;
+            }
+        }
     }
 }

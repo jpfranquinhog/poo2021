@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+    private int score;
+    private int counter;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -16,9 +17,23 @@ public class MyWorld extends World
     public MyWorld()
     {    
         super(667, 667, 1);
+        score=0;
+        counter=0;
         prepare();
     }
-
+    
+    public void act(){
+        increaseScore();
+        showText(""+score,getWidth()-getWidth()/10,getHeight()/20);
+        if(getObjects(Player.class).get(0).getOxygen()<=0){
+            endgame();
+        }
+        if(getObjects(Player2.class).get(0).getOxygen()<=0){
+            endgame();
+        }
+        
+    }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -44,5 +59,33 @@ public class MyWorld extends World
         addObject(machine1, getWidth()/10,getHeight()/4);
         OxygenMachine machine2 = new OxygenMachine(player1);
         addObject(machine2, getWidth()-getWidth()/10,getHeight()-getHeight()/4);
+        
+    }
+    
+    public void increaseScore(){
+        if(counter==100){
+            score+=10;
+        }
+        
+        if(counter>=100){
+            counter=0;
+        }else counter++;
+    }
+    
+    public int getScrore(){
+        return score;
+    }
+    
+    public void increaseScore(int amount){
+        score+=amount;
+    }
+    
+    public void endgame(){
+        EndBackGround endBackGround = new EndBackGround();
+        addObject(endBackGround,0,0);
+        showText("",getWidth()-getWidth()/10,getHeight()/20);
+        showText("GAME OVER",getWidth()/2,getWidth()/18);
+        showText("Score = "+score,getWidth()-getWidth()/2,getHeight()/2);
+        Greenfoot.stop();
     }
 }
