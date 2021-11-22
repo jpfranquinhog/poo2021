@@ -37,7 +37,7 @@ public class MyWorld extends World
         if(getObjects(Player2.class).get(0).getOxygen()<=0){
             endgame();
         }
-        
+        fire();
     }
     
     /**
@@ -137,6 +137,17 @@ public class MyWorld extends World
             valor = machine.getBatteryCount();
             info = "Battery left: " + valor;
             showText(info,machine.getX(), machine.getY()+80);
+        }
+    }
+    
+    public void fire(){
+        if(Greenfoot.isKeyDown("e")){
+            Bullet bullet = new Bullet();
+            addObject(bullet,getObjects(Player.class).get(0).getX(),getObjects(Player.class).get(0).getY());
+        }
+        if(Greenfoot.isKeyDown(".")){
+            Bullet bullet = new Bullet();
+            addObject(bullet,getObjects(Player2.class).get(0).getX(),getObjects(Player2.class).get(0).getY());
         }
     }
 }
