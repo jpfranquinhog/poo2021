@@ -21,7 +21,7 @@ public class Bullet extends Actor
     }    
     
     public Bullet(){
-        getImage().scale(getImage().getWidth()/10,getImage().getHeight()/10);
+        getImage().scale(getImage().getWidth()/15,getImage().getHeight()/15);
     }
     
     public void ifEdje(){
