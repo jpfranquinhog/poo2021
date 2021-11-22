@@ -166,6 +166,4 @@ public class Player extends Actor
     public void setBatteryStored(int val){
         batteryStored = batteryStored - val;
     }
-    
-    
 }
