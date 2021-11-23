@@ -53,25 +53,25 @@ public class MyWorld extends World
     private void prepare()
     {
         setBackground("background.jpg");
-        
+
         //Spawn dos jogadores
         Player player1 = new Player();
         addObject(player1,getWidth()/4,getHeight()/2);
         Player2 player2 = new Player2();
         addObject(player2,getWidth()-getWidth()/4,getHeight()-getHeight()/2);
-        
+
         //Spawn dos contadores
         OxygenCounter counter1 = new OxygenCounter(player1);
         addObject(counter1, getWidth()/8,getHeight()/20);
         OxygenCounter counter2 = new OxygenCounter(player2);
         addObject(counter2, getWidth()-getWidth()/8,getHeight()/20);
-        
+
         //Spawn das maquinas de oxigenio
         OxygenMachine machine1 = new OxygenMachine(player2);
         addObject(machine1, getWidth()/10,getHeight()/4);
         OxygenMachine machine2 = new OxygenMachine(player1);
         addObject(machine2, getWidth()-getWidth()/10,getHeight()-getHeight()/4);
-        
+
         //Spawn do espaco entre os jogadores
         Space space1 = new Space();
         addObject(space1, getWidth()/2,getHeight()/21);
@@ -95,6 +95,12 @@ public class MyWorld extends World
         addObject(space10, getWidth()/2,space9.getY()+2*getHeight()/21);
         Space space11 = new Space();
         addObject(space11, getWidth()/2,space10.getY()+2*getHeight()/21);
+        
+        //enemy spawn
+        Enemy enemy = new Enemy();
+        addObject(enemy,519,122);
+        Enemy enemy2 = new Enemy();
+        addObject(enemy2,163,580);
     }
     
     public void increaseScore(){
