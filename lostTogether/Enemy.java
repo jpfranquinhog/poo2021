@@ -125,6 +125,8 @@ public class Enemy extends Actor
                     break;
                     
                 case 15:
+                    PowerPickup power = new PowerPickup();
+                    getWorld().addObject(power, this.getX(),this.getY());
                     getWorld().removeObject(this);
                     break;
                 default:
