@@ -19,6 +19,7 @@ public class Player2 extends Player
         //zoneChange();
         oxygenDrop();
         pickupBattery();
+        checkTurret("0");
     }
 
     public void pMove(){

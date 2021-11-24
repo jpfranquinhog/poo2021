@@ -21,7 +21,7 @@ public class MyWorld extends World
      */
     public MyWorld()
     {    
-        super(667, 667, 1);
+        super(1300, 667, 1);
         score=0;
         counter=0;
         fireSpeed=1;
@@ -52,25 +52,33 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        setBackground("background.jpg");
+        setBackground("background1.png");
 
         //Spawn dos jogadores
         Player player1 = new Player();
-        addObject(player1,getWidth()/4,getHeight()/2);
+        addObject(player1,getWidth()/3,getHeight()/2);
         Player2 player2 = new Player2();
-        addObject(player2,getWidth()-getWidth()/4,getHeight()-getHeight()/2);
-
+        addObject(player2,getWidth()-getWidth()/3,getHeight()-getHeight()/2);
+        
+        //Spawn das turrets
+        Turret turret1 = new Turret();
+        addObject(turret1, getWidth()/5 + (getWidth()/30),getHeight()/2);
+        turret1.setRotation(270);
+        Turret turret2 = new Turret();
+        addObject(turret2, getWidth()-(getWidth()/5 +(getWidth()/30)),getHeight()-getHeight()/2);
+        turret2.setRotation(90);
+        
         //Spawn dos contadores
         OxygenCounter counter1 = new OxygenCounter(player1);
-        addObject(counter1, getWidth()/8,getHeight()/20);
+        addObject(counter1, getWidth()/3,getHeight()/20);
         OxygenCounter counter2 = new OxygenCounter(player2);
-        addObject(counter2, getWidth()-getWidth()/8,getHeight()/20);
+        addObject(counter2, getWidth()-getWidth()/3,getHeight()/20);
 
         //Spawn das maquinas de oxigenio
         OxygenMachine machine1 = new OxygenMachine(player2);
-        addObject(machine1, getWidth()/10,getHeight()/4);
+        addObject(machine1, getWidth()/4 + getWidth()/30,getHeight()/4);
         OxygenMachine machine2 = new OxygenMachine(player1);
-        addObject(machine2, getWidth()-getWidth()/10,getHeight()-getHeight()/4);
+        addObject(machine2, getWidth()- (getWidth()/4 + getWidth()/30),getHeight()-getHeight()/4);
 
         //Spawn do espaco entre os jogadores
         Space space1 = new Space();
@@ -97,10 +105,10 @@ public class MyWorld extends World
         addObject(space11, getWidth()/2,space10.getY()+2*getHeight()/21);
         
         //enemy spawn
-        Enemy enemy = new Enemy();
+        /*Enemy enemy = new Enemy();
         addObject(enemy,519,122);
         Enemy enemy2 = new Enemy();
-        addObject(enemy2,163,580);
+        addObject(enemy2,163,580);*/
     }
     
     public void increaseScore(){

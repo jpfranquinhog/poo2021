@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class ant here.
@@ -14,6 +15,7 @@ public class Player extends Actor
     private int counter, count;
     private int oxygenCount;
     private int batteryStored;
+    private int fireDelay, delayStart;
 
     public Player(){
         /* player image source
@@ -25,6 +27,8 @@ public class Player extends Actor
         oxygenCount = 100;
         count = 0;
         batteryStored = 0;
+        fireDelay = 0;
+        delayStart = 30;
         playerImage = new GreenfootImage("0_Citizen_Walk_000.png");
         playerImage.scale(playerImage.getWidth()/pScale,playerImage.getHeight()/pScale);
         setImage(playerImage);
@@ -37,6 +41,7 @@ public class Player extends Actor
         //zoneChange();
         oxygenDrop();
         pickupBattery();
+        checkTurret("f");
     }    
 
     /*public void zoneChange(){
@@ -166,4 +171,16 @@ public class Player extends Actor
     public void setBatteryStored(int val){
         batteryStored = batteryStored - val;
     }
+    
+    public void checkTurret(String turretkeyfire){
+        if(Greenfoot.isKeyDown(turretkeyfire) && isTouching(Turret.class) && fireDelay <= 0){
+            List<Turret> turrets = getIntersectingObjects(Turret.class);
+            for(Turret turret : turrets){
+                turret.fireBullet();
+            }
+            fireDelay = delayStart;
+        }
+        fireDelay--;
+    }
+    
 }
