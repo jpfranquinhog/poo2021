@@ -13,8 +13,7 @@ public class MyWorld extends World
     private SimpleTimer timer = new SimpleTimer();
     private int timeToArrive = 60;
     private List<OxygenMachine> machines;
-    private int fireSpeed;
-    private int delayStart,fireDelay1,fireDelay2;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -24,10 +23,6 @@ public class MyWorld extends World
         super(1300, 667, 1);
         score=0;
         counter=0;
-        fireSpeed=1;
-        fireDelay1=0;
-        fireDelay2=0;
-        delayStart=30;
         prepare();
         timer.mark();
     }
@@ -43,7 +38,6 @@ public class MyWorld extends World
         if(getObjects(Player2.class).get(0).getOxygen()<=0){
             endgame();
         }
-        fire();
     }
     
     /**
@@ -158,20 +152,5 @@ public class MyWorld extends World
             info = "Battery left: " + valor;
             showText(info,machine.getX(), machine.getY()+80);
         }
-    }
-    
-    public void fire(){
-        if(Greenfoot.isKeyDown("e") && fireDelay1<=0){
-            Bullet bullet = new Bullet();
-            addObject(bullet,getObjects(Player.class).get(0).getX(),getObjects(Player.class).get(0).getY());
-            fireDelay1=delayStart;
-        }
-        if(Greenfoot.isKeyDown(".") && fireDelay2<=0){
-            Bullet bullet = new Bullet();
-            addObject(bullet,getObjects(Player2.class).get(0).getX(),getObjects(Player2.class).get(0).getY());
-            fireDelay2=delayStart;
-        }
-        fireDelay1--;
-        fireDelay2--;
     }
 }

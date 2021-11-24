@@ -26,7 +26,6 @@ public class Enemy extends Actor
         walkAnimation();
         eMove();
         move(moveSpeed);
-        
         takeDamage();
         Death();
     }    
@@ -112,20 +111,21 @@ public class Enemy extends Actor
                     setImage(enemyImage);
                     break;
     
-                case 5:
+                case 10:
                     enemyImage = new GreenfootImage("Wraith_01_Dying_009.png");
                     enemyImage.scale(enemyImage.getWidth()/eScale,enemyImage.getHeight()/eScale);
                     setImage(enemyImage);
                     break;
     
-                case 10:
+                case 20:
                     enemyImage = new GreenfootImage("Wraith_01_Dying_014.png");
                     enemyImage.scale(enemyImage.getWidth()/eScale,enemyImage.getHeight()/eScale);
                     setImage(enemyImage);
                     break;
                     
-                case 15:
+                case 30:
                     PowerPickup power = new PowerPickup();
+                    ((MyWorld)getWorld()).increaseScore(500);
                     getWorld().addObject(power, this.getX(),this.getY());
                     getWorld().removeObject(this);
                     break;
