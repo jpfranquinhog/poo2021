@@ -16,8 +16,7 @@ public class Player extends Actor
     private int oxygenCount;
     private int batteryStored;
     private int fireDelay, delayStart;
-    private int fireSpeed;
-    private int delayStartP,fireDelayP;
+
     public Player(){
         /* player image source
          * /https://craftpix.net/freebies/free-citizen-artist-astrologer-4-direction-npc-character-pack/
@@ -30,9 +29,6 @@ public class Player extends Actor
         batteryStored = 0;
         fireDelay = 0;
         delayStart = 30;
-        fireSpeed=1;
-        fireDelayP=0;
-        delayStartP=30;
         playerImage = new GreenfootImage("0_Citizen_Walk_000.png");
         playerImage.scale(playerImage.getWidth()/pScale,playerImage.getHeight()/pScale);
         setImage(playerImage);
@@ -45,8 +41,7 @@ public class Player extends Actor
         //zoneChange();
         oxygenDrop();
         pickupBattery();
-        checkTurret("f");
-        fire("E");
+        checkTurret("f","w","s");
     }    
 
     /*public void zoneChange(){
@@ -60,9 +55,28 @@ public class Player extends Actor
     }*/
 
     public void pMove(){
-        if(isTouching(Space.class)){
+        if(isTouching(Turret.class)){
+            if(Greenfoot.isKeyDown("d")){
+                setLocation(getX()+moveSpeed, getY());
+                walkAnimation();
+            }
+        }
+        else if(isTouching(Space.class) && getX()== 580){
             if(Greenfoot.isKeyDown("a")){
                 setLocation(getX()-moveSpeed, getY());
+                walkAnimation();
+            }
+            if(Greenfoot.isKeyDown("w")){
+                setLocation(getX(), getY()-moveSpeed);
+                walkAnimation();
+            }
+            if(Greenfoot.isKeyDown("s")){
+                setLocation(getX(), getY()+moveSpeed);
+                walkAnimation();
+            }
+        }else if(isTouching(Space.class) && getX()== 340){
+            if(Greenfoot.isKeyDown("d")){
+                setLocation(getX()+moveSpeed, getY());
                 walkAnimation();
             }
             if(Greenfoot.isKeyDown("w")){
@@ -91,6 +105,7 @@ public class Player extends Actor
                 walkAnimation();
             }
         }
+
     }
 
     public void walkAnimation(){
@@ -161,39 +176,45 @@ public class Player extends Actor
             }
         }
     }
-    
+
     public void pickupBattery(){
         if(isTouching(PowerPickup.class)){
             batteryStored = batteryStored + 20;
             removeTouching(PowerPickup.class);
         }
     }
-    
+
     public int getBatteryStored(){
         return batteryStored;
     }
-    
+
     public void setBatteryStored(int val){
         batteryStored = batteryStored - val;
     }
-    
-    public void checkTurret(String turretkeyfire){
+
+    public void checkTurret(String turretkeyfire, String keyrotateR, String keyrotateL){
+        List<Turret> turrets = getIntersectingObjects(Turret.class);
         if(Greenfoot.isKeyDown(turretkeyfire) && isTouching(Turret.class) && fireDelay <= 0){
-            List<Turret> turrets = getIntersectingObjects(Turret.class);
             for(Turret turret : turrets){
                 turret.fireBullet();
             }
             fireDelay = delayStart;
         }
         fireDelay--;
-    }
-    
-    public void fire(String fireKey){
-        if(Greenfoot.isKeyDown(fireKey) && fireDelayP<=0){
-            Bullet bullet = new Bullet(true,getX(),getY());
-            getWorld().addObject(bullet,getX(),getY());
-            fireDelayP=delayStart;
+
+        if(Greenfoot.isKeyDown(keyrotateR) && isTouching(Turret.class)){
+            for(Turret turret : turrets){
+                if(turret.getRotation() < turret.getMaxRotUp()){
+                    turret.rotateTurret(5);
+                }
+            }
+        }else if(Greenfoot.isKeyDown(keyrotateL) && isTouching(Turret.class)){
+            for(Turret turret : turrets){
+                if(turret.getRotation() > turret.getMaxRotDown()){
+                    turret.rotateTurret(-5);
+                }
+            }
         }
-        fireDelayP--;
     }
+
 }

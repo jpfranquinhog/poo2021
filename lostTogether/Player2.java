@@ -19,12 +19,16 @@ public class Player2 extends Player
         //zoneChange();
         oxygenDrop();
         pickupBattery();
-        checkTurret("0");
-        fire(".");
+        checkTurret("0","Down","Up");
     }
 
     public void pMove(){
-        if(isTouching(Space.class)){
+        if(isTouching(Turret.class)){
+            if(Greenfoot.isKeyDown("Left")){
+                setLocation(getX()-getMoveSpeed(), getY());
+                walkAnimation();
+            }
+        }else if(isTouching(Space.class)){
             if(Greenfoot.isKeyDown("Right")){
                 setLocation(getX()+getMoveSpeed(), getY());
                 walkAnimation();
