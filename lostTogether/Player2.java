@@ -20,6 +20,7 @@ public class Player2 extends Player
         oxygenDrop();
         pickupBattery();
         checkTurret("0","Down","Up");
+        fire(".");
     }
 
     public void pMove(){

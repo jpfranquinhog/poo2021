@@ -16,6 +16,8 @@ public class Player extends Actor
     private int oxygenCount;
     private int batteryStored;
     private int fireDelay, delayStart;
+    private int fireSpeed;
+    private int delayStartP,fireDelayP;
 
     public Player(){
         /* player image source
@@ -29,6 +31,9 @@ public class Player extends Actor
         batteryStored = 0;
         fireDelay = 0;
         delayStart = 30;
+        fireSpeed=1;
+        fireDelayP=0;
+        delayStartP=30;
         playerImage = new GreenfootImage("0_Citizen_Walk_000.png");
         playerImage.scale(playerImage.getWidth()/pScale,playerImage.getHeight()/pScale);
         setImage(playerImage);
@@ -42,6 +47,7 @@ public class Player extends Actor
         oxygenDrop();
         pickupBattery();
         checkTurret("f","w","s");
+        fire("E");
     }    
 
     /*public void zoneChange(){
@@ -217,4 +223,12 @@ public class Player extends Actor
         }
     }
 
+    public void fire(String fireKey){
+        if(Greenfoot.isKeyDown(fireKey) && fireDelayP<=0){
+            Bullet bullet = new Bullet(true,getX(),getY());
+            getWorld().addObject(bullet,getX(),getY());
+            fireDelayP=delayStart;
+        }
+        fireDelayP--;
+    }
 }

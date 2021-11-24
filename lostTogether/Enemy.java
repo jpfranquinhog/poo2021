@@ -112,21 +112,22 @@ public class Enemy extends Actor
                     setImage(enemyImage);
                     break;
     
-                case 5:
+                case 10:
                     enemyImage = new GreenfootImage("Wraith_01_Dying_009.png");
                     enemyImage.scale(enemyImage.getWidth()/eScale,enemyImage.getHeight()/eScale);
                     setImage(enemyImage);
                     break;
     
-                case 10:
+                case 20:
                     enemyImage = new GreenfootImage("Wraith_01_Dying_014.png");
                     enemyImage.scale(enemyImage.getWidth()/eScale,enemyImage.getHeight()/eScale);
                     setImage(enemyImage);
                     break;
                     
-                case 15:
+                case 30:
                     PowerPickup power = new PowerPickup();
                     power.getImage().scale(power.getImage().getWidth()/2, power.getImage().getHeight()/2);
+                    ((MyWorld)getWorld()).increaseScore(500);
                     getWorld().addObject(power, this.getX(),this.getY()+200);
                     getWorld().removeObject(this);
                     break;

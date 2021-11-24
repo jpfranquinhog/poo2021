@@ -13,8 +13,7 @@ public class MyWorld extends World
     private SimpleTimer timer = new SimpleTimer();
     private int timeToArrive = 60;
     private List<OxygenMachine> machines;
-    private int fireSpeed;
-    private int delayStart,fireDelay1,fireDelay2;
+    
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -26,10 +25,6 @@ public class MyWorld extends World
         counter=0;
         counter2=0;
         counter3=0;
-        fireSpeed=1;
-        fireDelay1=0;
-        fireDelay2=0;
-        delayStart=30;
         prepare();
         timer.mark();
         setPaintOrder(EndBackGround.class,Player.class,Turret.class,Bullet.class,Asteroid.class,Space.class);
@@ -40,7 +35,6 @@ public class MyWorld extends World
         showText("Score:"+score,getWidth()/2+getWidth()/12,getHeight()/25);
         showTime();
         batteryStatus();
-        fire();
         spawnAlien();
         spawnAsteroid();
         if(getObjects(Player.class).get(0).getOxygen()<=0){
@@ -161,21 +155,6 @@ public class MyWorld extends World
             info = "Battery left: " + valor;
             showText(info,machine.getX(), machine.getY()+80);
         }
-    }
-
-    public void fire(){
-        if(Greenfoot.isKeyDown("e") && fireDelay1<=0){
-            Bullet bullet = new Bullet(5);
-            addObject(bullet,getObjects(Player.class).get(0).getX(),getObjects(Player.class).get(0).getY());
-            fireDelay1=delayStart;
-        }
-        if(Greenfoot.isKeyDown(".") && fireDelay2<=0){
-            Bullet bullet = new Bullet(5);
-            addObject(bullet,getObjects(Player2.class).get(0).getX(),getObjects(Player2.class).get(0).getY());
-            fireDelay2=delayStart;
-        }
-        fireDelay1--;
-        fireDelay2--;
     }
 
     public void spawnAsteroid(){
