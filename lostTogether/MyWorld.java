@@ -42,6 +42,7 @@ public class MyWorld extends World
         showTime();
         batteryStatus();
         story();
+        spawnAsteroid();
         if(storyDone){
             spawnAlien();
             spawnAsteroid();

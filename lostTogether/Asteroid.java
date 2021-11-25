@@ -22,9 +22,9 @@ public class Asteroid extends Actor
     
     public void checkCollision(){
         if(isTouching(Space.class)){
-            getWorld().removeObject(this);
             getObjectsInRange(900, Player.class).get(0).oxygenDrain(10);
             getObjectsInRange(900, Player2.class).get(0).oxygenDrain(10);
+            getWorld().removeObject(this);
         }
     }
 
