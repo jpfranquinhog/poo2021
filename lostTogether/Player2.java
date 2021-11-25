@@ -24,17 +24,17 @@ public class Player2 extends Player
     }
 
     public void pMove(){
-        if(isTouching(Turret.class)){
+        if(isTouching(Turret.class) && getX() >= 935){
             if(Greenfoot.isKeyDown("Left")){
                 setLocation(getX()-getMoveSpeed(), getY());
                 walkAnimation();
             }
-        }else if(isTouching(Space.class)){
-            if(Greenfoot.isKeyDown("Right")){
-                setLocation(getX()+getMoveSpeed(), getY());
+        }else if(isTouching(Space.class) && getX()>= 965){
+            if(Greenfoot.isKeyDown("Left")){
+                setLocation(getX()-getMoveSpeed(), getY());
                 walkAnimation();
             }
-            if(Greenfoot.isKeyDown("up")){
+            if(Greenfoot.isKeyDown("Up")){
                 setLocation(getX(), getY()-getMoveSpeed());
                 walkAnimation();
             }
@@ -42,7 +42,20 @@ public class Player2 extends Player
                 setLocation(getX(), getY()+getMoveSpeed());
                 walkAnimation();
             } 
-        }else {
+        }else if(isTouching(Space.class)&& getX()== 705) {
+            if(Greenfoot.isKeyDown("Right")){
+                setLocation(getX()+getMoveSpeed(), getY());
+                walkAnimation();
+            }
+            if(Greenfoot.isKeyDown("Up")){
+                setLocation(getX(), getY()-getMoveSpeed());
+                walkAnimation();
+            }
+            if(Greenfoot.isKeyDown("Down")){
+                setLocation(getX(), getY()+getMoveSpeed());
+                walkAnimation();
+            }
+        }else{
             if(Greenfoot.isKeyDown("Left")){
                 setLocation(getX()-getMoveSpeed(), getY());
                 walkAnimation();
@@ -51,7 +64,7 @@ public class Player2 extends Player
                 setLocation(getX()+getMoveSpeed(), getY());
                 walkAnimation();
             }
-            if(Greenfoot.isKeyDown("up")){
+            if(Greenfoot.isKeyDown("Up")){
                 setLocation(getX(), getY()-getMoveSpeed());
                 walkAnimation();
             }

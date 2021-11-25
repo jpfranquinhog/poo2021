@@ -61,13 +61,13 @@ public class Player extends Actor
     }*/
 
     public void pMove(){
-        if(isTouching(Turret.class)){
+        if(isTouching(Turret.class) && getX() <= 360){
             if(Greenfoot.isKeyDown("d")){
                 setLocation(getX()+moveSpeed, getY());
                 walkAnimation();
             }
         }
-        else if(isTouching(Space.class) && getX()== 580){
+        else if(isTouching(Space.class) && getX()>= 595){
             if(Greenfoot.isKeyDown("a")){
                 setLocation(getX()-moveSpeed, getY());
                 walkAnimation();

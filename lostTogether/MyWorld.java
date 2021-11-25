@@ -105,10 +105,10 @@ public class MyWorld extends World
         }
         
         Space space5 = new Space();
-        addObject(space5, getWidth()-(getWidth()/5+getWidth()/55),getHeight()/21);
+        addObject(space5, getWidth()-(getWidth()/5+getWidth()/62),getHeight()/21);
         for(int i = 1; i < 11; i++){
             Space space6 = new Space();
-            addObject(space6, getWidth()-(getWidth()/5+getWidth()/55),i*(2*getHeight()/21));
+            addObject(space6, getWidth()-(getWidth()/5+getWidth()/62),i*(2*getHeight()/21));
         }
         
         //enemy spawn
