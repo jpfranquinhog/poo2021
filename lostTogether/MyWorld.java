@@ -47,7 +47,10 @@ public class MyWorld extends World
             spawnAsteroid();
         }
         if(getObjects(Player.class).get(0).getOxygen()<=0 || getObjects(Player2.class).get(0).getOxygen()<=0){
-            endgame();
+            gameOver();
+        }
+        if(timeToArrive<=0){
+            EndScore();
         }
     }
 
@@ -132,13 +135,25 @@ public class MyWorld extends World
         score+=amount;
     }
 
-    public void endgame(){
+    public void gameOver(){
         EndBackGround endBackGround = new EndBackGround();
         addObject(endBackGround,0,0);
         showText("",getWidth()/3+getWidth()/8,getHeight()/25);
         showText("",getWidth()-getWidth()/3,getHeight()/25);
+        showText("",getWidth()/2+getWidth()/12,getHeight()/25);
         showText("GAME OVER",getWidth()/2,getWidth()/18);
-        showText("Score : "+score,getWidth()/2+getWidth()/12,getHeight()/25);
+        showText("Score : "+score,getWidth()/2,getHeight()/2);
+        Greenfoot.stop();
+    }
+    
+    public void EndScore(){
+        EndBackGround endBackGround = new EndBackGround();
+        addObject(endBackGround,0,0);
+        showText("",getWidth()/3+getWidth()/8,getHeight()/25);
+        showText("",getWidth()-getWidth()/3,getHeight()/25);
+        showText("",getWidth()/2+getWidth()/12,getHeight()/25);
+        showText("ESCAPED!",getWidth()/2,getWidth()/18);
+        showText("Score : "+score,getWidth()/2,getHeight()/2);
         Greenfoot.stop();
     }
 

@@ -66,6 +66,7 @@ public class Bullet extends Actor
     public void ifAsteroid(){
         if(isTouching(Asteroid.class)){
             removeTouching(Asteroid.class);
+            ((MyWorld)getWorld()).increaseScore(500);
             getWorld().removeObject(this);
         }
     }
