@@ -11,16 +11,18 @@ public class Bullet extends Actor
     private int moveSpeed;
     List<Enemy> enemys;
     int temp,index;
-    boolean track;
+    boolean track,deleted;
     
     public Bullet(int speed){
         getImage().scale(getImage().getWidth()/15,getImage().getHeight()/15);
         moveSpeed = speed;
+        deleted=false;
     }
     
     public Bullet(Boolean trackEnemy,int x, int y){
         getImage().scale(getImage().getWidth()/15,getImage().getHeight()/15);
         moveSpeed = 5;
+        deleted=false;
         temp=1000;
         index=0;
         track=trackEnemy;
@@ -34,7 +36,10 @@ public class Bullet extends Actor
             trackEnemy();
         }
         ifEdje();
-    }    
+        if(!deleted){
+            ifAsteroid();
+        }
+    } 
     
     public void trackEnemy(){
         if(!getWorld().getObjects(Enemy.class).isEmpty()){
@@ -46,14 +51,22 @@ public class Bullet extends Actor
                 }
             }
             turnTowards(enemys.get(index).getX(),enemys.get(index).getY());
-            track=false;
+            
         }
+        track=false;
     }
     
     public void ifEdje(){
         if(isAtEdge()){
             getWorld().removeObject(this);
+            deleted=true;
         }
     }
     
+    public void ifAsteroid(){
+        if(isTouching(Asteroid.class)){
+            removeTouching(Asteroid.class);
+            getWorld().removeObject(this);
+        }
+    }
 }

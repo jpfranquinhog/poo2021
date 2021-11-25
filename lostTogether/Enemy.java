@@ -26,7 +26,7 @@ public class Enemy extends Actor
         walkAnimation();
         eMove();
         move(moveSpeed);
-        
+        touchingPlayer();
         takeDamage();
         Death();
     }    
@@ -37,7 +37,7 @@ public class Enemy extends Actor
         eScale = 4;
         scaneArea=50;
         moveSpeed=2;
-        health=2;
+        health=6;
         enemyImage = new GreenfootImage("Wraith_01_Moving Forward_000.png");
         enemyImage.scale(enemyImage.getWidth()/eScale,enemyImage.getHeight()/eScale);
     }
@@ -134,6 +134,12 @@ public class Enemy extends Actor
                 default:
             }
             deathCounter++;
+        }
+    }
+    
+    public void touchingPlayer(){
+        if(!getObjectsInRange(10,Player.class).isEmpty()){
+            getObjectsInRange(10,Player.class).get(0).oxygenDrop();
         }
     }
 }

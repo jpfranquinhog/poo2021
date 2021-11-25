@@ -169,6 +169,10 @@ public class Player extends Actor
         }
 
     }
+    
+    public void oxygenDrain(int drain){
+        oxygenCount-=drain;
+    }
 
     public int getOxygen(){
         return oxygenCount;

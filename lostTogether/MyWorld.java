@@ -11,8 +11,11 @@ public class MyWorld extends World
     private int score;
     private int counter,counter2,counter3;
     private SimpleTimer timer = new SimpleTimer();
-    private int timeToArrive = 60;
+    private int timeToArrive = 200;
     private List<OxygenMachine> machines;
+    private boolean storyDone;
+    private int spawnRateAlien, spawnRateAsteroid;
+    
     
     /**
      * Constructor for objects of class MyWorld.
@@ -25,6 +28,9 @@ public class MyWorld extends World
         counter=0;
         counter2=0;
         counter3=0;
+        storyDone=false;
+        spawnRateAlien=300;
+        spawnRateAsteroid=600;
         prepare();
         timer.mark();
         setPaintOrder(EndBackGround.class,Player.class,Turret.class,Bullet.class,Asteroid.class,Space.class);
@@ -35,12 +41,12 @@ public class MyWorld extends World
         showText("Score:"+score,getWidth()/2+getWidth()/12,getHeight()/25);
         showTime();
         batteryStatus();
-        spawnAlien();
-        spawnAsteroid();
-        if(getObjects(Player.class).get(0).getOxygen()<=0){
-            endgame();
+        story();
+        if(storyDone){
+            spawnAlien();
+            spawnAsteroid();
         }
-        if(getObjects(Player2.class).get(0).getOxygen()<=0){
+        if(getObjects(Player.class).get(0).getOxygen()<=0 || getObjects(Player2.class).get(0).getOxygen()<=0){
             endgame();
         }
     }
@@ -158,7 +164,7 @@ public class MyWorld extends World
     }
 
     public void spawnAsteroid(){
-        if(counter2 == 360){
+        if(counter2 == spawnRateAsteroid){
             int rdmNum = Greenfoot.getRandomNumber(50);
             Asteroid asteroid = new Asteroid(1,rdmNum);
             addObject(asteroid, 0, Greenfoot.getRandomNumber(getHeight()));
@@ -167,21 +173,63 @@ public class MyWorld extends World
             Asteroid asteroid2 = new Asteroid(1,rdmNum2);
             addObject(asteroid2, getWidth(), Greenfoot.getRandomNumber(getHeight()));
             counter2 = 0;
+            spawnRateAsteroid--;
         }else{
             counter2++;   
         }
     }
     
     public void spawnAlien(){
-        if(counter3 == 600){
+        if(counter3 == spawnRateAlien){
             int rdmNumX = 330 + Greenfoot.getRandomNumber(650);
             int rdmNumY = Greenfoot.getRandomNumber(getHeight());
             Enemy enemy1 = new Enemy();
             addObject(enemy1, rdmNumX, rdmNumY);
             counter3 = 0;
+            spawnRateAlien-=3;
         }else{
             counter3++;
         }
         
+    }
+    
+    public void story(){
+        switch(timeToArrive){
+            case 200:
+                showText("WARNING...WARNING...SYSTEM FAILURE",+getWidth()/2,getHeight()/6);
+                break;
+            
+            case 197:
+                showText("SHIP UNDER ATTACK",+getWidth()/2,getHeight()/6);
+                break;    
+                
+            case 194:
+                showText("RESTORING ESCAPE PODS",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 191:
+                showText("ASTEROIDS AND UNKNOWN ENTITIES APPROACHING",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 188:
+                showText("PLAYER1(LEFT) move with W A S D and fire with E",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 183:
+                showText("PLAYER2(RIGHT) move with arrow keys and fire with .",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 177:
+                showText("interact with turrets by getting close and fire with (PLAYER1)F and (PLAYER2)0",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 171:
+                showText("SURVIVE UNTIL PODS ARE REPAIRED AND READY FOR EXTRACTION",+getWidth()/2,getHeight()/6);
+                break;
+                
+            case 165:
+                showText("",+getWidth()/2,getHeight()/6);
+                storyDone=true;
+            }
     }
 }
