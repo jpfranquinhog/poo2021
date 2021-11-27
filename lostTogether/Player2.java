@@ -14,15 +14,14 @@ public class Player2 extends Player
      */
     public void act() 
     {
-        // Add your action code here.
         pMove();
-        //zoneChange();
         oxygenDrop();
         pickupBattery();
         checkTurret("0","Down","Up");
         fire(".");
     }
 
+    @Override
     public void pMove(){
         if(isTouching(Turret.class) && getX() >= 935){
             if(Greenfoot.isKeyDown("Left")){

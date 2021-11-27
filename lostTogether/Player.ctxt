@@ -17,7 +17,6 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ pMove()
-comment3.text=public\ void\ zoneChange(){\r\n\ \ \ \ if(isAtEdge()){\r\n\ \ \ \ if((getX()>100)\ &&\ (getY()>10)\ &&\ (getY()<660)){\r\n\ \ \ \ setLocation(1,getY());\r\n\ \ \ \ }else\ if((getX()<100)\ &&\ (getY()>10)\ &&\ (getY()<660)){\r\n\ \ \ \ setLocation(599,getY());\r\n\ \ \ \ }\r\n\ \ \ \ }\r\n}
 comment4.params=
 comment4.target=void\ walkAnimation()
 comment5.params=

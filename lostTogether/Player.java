@@ -41,24 +41,12 @@ public class Player extends Actor
 
     public void act() 
     {
-        // Add your action code here.
         pMove();
-        //zoneChange();
         oxygenDrop();
         pickupBattery();
         checkTurret("f","w","s");
         fire("E");
     }    
-
-    /*public void zoneChange(){
-    if(isAtEdge()){
-    if((getX()>100) && (getY()>10) && (getY()<660)){
-    setLocation(1,getY());
-    }else if((getX()<100) && (getY()>10) && (getY()<660)){
-    setLocation(599,getY());
-    }
-    }
-    }*/
 
     public void pMove(){
         if(isTouching(Turret.class) && getX() <= 360){
